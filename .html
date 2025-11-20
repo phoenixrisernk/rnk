@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Phoenix Rise Activewear</title>
+<style>
+:root{
+--black:#000;
+--charcoal:#1a1a1a;
+--soft-grey:#f3f3f3;
+--white:#fff;
+--peach:#f9c7b4;
+--lav:#d7c7f5;
+--mint:#c9f0dd;
+--text:#222;
+--muted:#666;
+--radius:18px;
+--shadow:0 8px 28px rgba(0,0,0,0.08);
+--max:1250px;
+--transition:.3s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#fafafa;color:var(--text);line-height:1.6;}
+/* GLOBAL FIX → Makes all sections same width on mobile */
+.section,
+.hero,
+.bg-section {
+padding-left:20px !important;
+padding-right:20px !important;
+}
+/* HEADER */
+header{
+position:sticky;top:0;background:var(--white);
+padding:18px 26px;z-index:100;box-shadow:var(--shadow);
+}
+.nav{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:24px;font-weight:800;color:var(--text);text-decoration:none;}
+.menu{display:flex;gap:26px;}
+.menu a{text-decoration:none;color:var(--text);font-weight:600;}
+.menu-toggle{display:none;font-size:26px;cursor:pointer;}
+/* HERO */
+.hero{
+background:var(--soft-grey);
+padding:80px 20px;
+}
+.hero-inner{
+max-width:var(--max);
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+.hero h1{font-size:42px;font-weight:800;margin-bottom:14px;}
+.hero p{font-size:18px;color:var(--muted);margin-bottom:28px;}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;}
+.cta{padding:14px 24px;border-radius:var(--radius);border:none;font-weight:700;font-size:18px;cursor:pointer;}
+.cta.peach{background:var(--peach);}
+.cta.lav{background:var(--lav);}
+.hero-img {
+width: 100%;
+height: 500px;
+border-radius: var(--radius);
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden; /* keeps it inside rounded corners */
+}
+.hero-img img {
+max-width: 100%;
+max-height: 100%;
+width: auto;
+height: auto;
+object-fit: contain; /* ensures full visibility */
+}
+/* ABOUT SECTION */
+.section{padding:90px 90px;}
+.section.light{background:#ffffff;}
+.section.grey{background:#f7f7f7;}
+.section-title{
+font-size:34px;
+text-align:center;
+margin-bottom:50px;
+font-weight:800;
+}
+.split{
+max-width:var(--max);margin:auto;
+display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.split img{
+width:100%;border-radius:var(--radius);box-shadow:var(--shadow);
+}
+/* CARDS */
+.card-grid{
+max-width:var(--max);
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+.card{
+background:var(--white);
+padding:28px;
+border-radius:var(--radius);
+border-top:6px solid var(--peach);
+box-shadow:var(--shadow);
+transition:var(--transition);
+}
+.card:hover{transform:translateY(-5px);}
+/* PRODUCT SECTION NEW */
+.product-layout{
+max-width: var(--max);
+margin: auto;
+display: grid;
+grid-template-columns: 320px 1fr;
+gap: 40px;
+align-items: center;
+min-height: 420px;
+}
+.product-list{
+display: flex;
+flex-direction: column;
+gap: 18px;
+justify-content: center;
+height: 100%;
+}
+.product-card{
+padding:20px;
+border-radius:var(--radius);
+cursor:pointer;
+background:var(--mint);
+box-shadow:var(--shadow);
+font-weight:700;
+transition:var(--transition);
+}
+.product-card:nth-child(2){background:var(--lav);}
+.product-card:nth-child(3){background:var(--peach);}
+.product-card:nth-child(4){background:#e0e0ff;}
+.product-card:hover{transform:translateY(-4px);}
+.product-display{
+background: var(--white);
+padding: 28px;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+min-height: 420px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+}
+.product-display img{
+width: 100%;
+height: 320px;
+object-fit: contain; /* FULL IMAGE ALWAYS VISIBLE */
+border-radius: var(--radius);
+margin-top: 16px;
+}
+/* BG SECTION */
+.bg-section{
+padding:120px 20px;
+background:url('https://image2url.com/images/1763580441274-aa45683d-bbb2-4c4b-aa7d-cddb3e3ca9e5.jpg') center/cover no-repeat;
+color:#000;
+text-align:center;
+background-size:cover;
+}
+.bg-section h2{
+font-size:38px;
+font-weight:800;
+margin-bottom:20px;
+color:#000; /* BLACK */
+}
+.bg-section p{
+font-size:18px;
+color:#000; /* BLACK TEXT */
+max-width:700px;
+margin:auto;
+}
+/* FOOTER */
+footer{
+background:var(--charcoal);
+color:var(--peach);
+text-align:center;
+padding:40px 20px;
+margin-top:60px;
+font-size:18px;
+}
+/* ANIMATIONS */
+.fadeUp{
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+.fadeUp.show{
+opacity:1;
+transform:translateY(0);
+}
+/* RESPONSIVE FIXED MOBILE IMPROVEMENTS */
+@media(max-width:900px){
+/* Remove big left-right padding to match hero */
+.section{padding:60px 20px !important;}
+.hero-inner{grid-template-columns:1fr;}
+.split{grid-template-columns:1fr;}
+.card-grid{
+grid-template-columns:1fr; /* full width cards like hero */
+}
+form{
+margin-left:0;
+margin-right:0;
+}
+.menu{display:none;}
+.menu-toggle{display:block;}
+.menu.open{
+display:flex;flex-direction:column;gap:12px;
+position:absolute;top:70px;right:20px;
+background:var(--white);padding:20px;border-radius:var(--radius);
+box-shadow:var(--shadow);
+}
+.product-layout{
+grid-template-columns:1fr;
+}
+.product-list{
+width:100%;
+}
+.product-display{
+width:100%;
+}
+}
+/* ==== COMMUNITY NEW DESIGN ==== */
+.community-new {
+padding: 100px 20px;
+background: #ffffff;
+}
+.community-new-inner {
+max-width: 1150px;
+margin: auto;
+text-align: center;
+}
+.community-new-title {
+font-size: 36px;
+font-weight: 800;
+margin-bottom: 20px;
+}
+.community-new-text {
+font-size: 18px;
+max-width: 780px;
+margin: auto;
+color: #555;
+margin-bottom: 50px;
+}
+.community-stats {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 25px;
+margin-top: 30px;
+}
+.community-stat-box {
+background: #f3f3f3;
+padding: 30px;
+border-radius: 18px;
+box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+transition: .3s ease;
+}
+.community-stat-box:hover {
+transform: translateY(-5px);
+}
+.community-stat-box h3 {
+font-size: 32px;
+font-weight: 800;
+color: #000;
+}
+.community-stat-box p {
+font-size: 16px;
+margin-top: 8px;
+color: #555;
+}
+/* ===========================
+CONTACT SECTION V2 (UNIQUE)
+=========================== */
+.contact-sec-v2 {
+background: #fafafa;
+padding: 100px 20px;
+}
+.contact-v2-inner {
+max-width: 800px;
+margin: auto;
+text-align: center;
+}
+.contact-v2-title {
+font-size: 36px;
+font-weight: 800;
+margin-bottom: 10px;
+}
+.contact-v2-sub {
+font-size: 18px;
+color: #555;
+margin-bottom: 40px;
+}
+.contact-v2-card {
+background: #ffffff;
+padding: 35px;
+border-radius: 20px;
+box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+margin-bottom: 40px;
+}
+.contact-v2-form {
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+.contact-v2-input,
+.contact-v2-textarea {
+width: 100%;
+padding: 16px 18px;
+border-radius: 14px;
+background: #f7f7f7;
+border: 1px solid transparent;
+font-size: 16px;
+transition: 0.25s ease;
+}
+.contact-v2-input:focus,
+.contact-v2-textarea:focus {
+background: #ffffff;
+border-color: #f9c7b4;
+box-shadow: 0 0 0 3px rgba(249,199,180,0.25);
+outline: none;
+}
+.contact-v2-btn {
+padding: 15px;
+background: #f9c7b4;
+border: none;
+border-radius: 14px;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+transition: 0.3s ease;
+}
+.contact-v2-btn:hover {
+background: #ffb79d;
+}
+.contact-v2-details {
+font-size: 16px;
+color: #444;
+line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<header>
+<div class="nav">
+<a href="#" class="logo" style="display:flex;align-items:center;gap:10px;">
+<img src="https://image2url.com/images/1763578425976-8b988887-ad6c-415e-a616-f135f12556bd.png"
+alt="Logo"
+style="height:62px;width:auto;display:block;">
+Phoenix Rise
+</a>
+<nav class="menu" id="menu">
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#why">Why Us</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="menu-toggle" id="menuToggle">☰</div>
+</div>
+</header>
+<!-- HERO -->
+<section class="hero fadeUp">
+<div class="hero-inner">
+<div>
+<h1>Premium Activewear Built for Performance & Style</h1>
+<h4>Premium Activewear • High Performance • Sustainable Innovation</h4>
+<p>Fitness apparel crafted for comfort, durability, and eco-conscious performance — built for athletes, creators, and everyday movers who expect more from what they wear.
+</p>
+<div class="cta-row">
+<button class="cta peach">Explore Our Collections</button>
+<button class="cta lav">Contact Us</button>
+</div>
+</div>
+<div class="hero-img">
+<img src="https://image2url.com/images/1763650535746-2cc64ccf-484b-4c3c-b4d1-dbb23cf09d44.png" alt="Hero Image">
+</div>
+</div>
+</section>
+<!-- ABOUT -->
+<section id="about" class="section light fadeUp">
+<h2 class="section-title">About Phoenix Rise</h2>
+<div class="split">
+<div>
+<p>Phoenix Rise FZ-LLC is a UAE-based premium activewear brand committed to redefining how modern fitness apparel feels and performs. We design high-performance clothing that blends functionality, comfort, and minimalist modern style—powered by sustainable, high-grade materials that support movement in every form.
+
+<br>
+<p>From intense training sessions to lifestyle wear, each product is engineered to deliver long-lasting comfort and confidence. Our presence spans the GCC, Asia, and Europe, supported by a steadily growing digital community and an expanding international customer base.
+</p></p>
+
+</div>
+<img src="https://image2url.com/images/1763570839492-c4d1b01b-bc38-4439-ac3d-055fd0047809.avif" alt="Activewear">
+</div>
+</section>
+<!-- VISION & MISSION -->
+<section class="section grey fadeUp">
+<h2 class="section-title">Vision & Mission</h2>
+<div class="card-grid">
+<div class="card">
+<h3>Vision</h3>
+<p>To become a globally recognized activewear brand that inspires confidence, movement, and sustainable performance.
+</p>
+</div>
+<div class="card">
+<h3>Mission</h3>
+<p>To design and deliver innovative, stylish, and eco-conscious activewear that enhances performance while prioritizing comfort, durability, and complete customer satisfaction.
+</p>
+</div>
+</div>
+</section>
+<!-- PRODUCTS SECTION (REWORKED) -->
+<!-- PRODUCTS SECTION (UPDATED COMPLETE) -->
+<section id="products" class="section light fadeUp">
+  <h2 class="section-title">Our Product Range</h2>
+
+  <div class="product-layout">
+
+    <!-- LEFT: Product list -->
+    <div class="product-list">
+      <div class="product-card" onclick="showProduct('sportswear')">Men’s &amp; Women’s Sportswear</div>
+      <div class="product-card" onclick="showProduct('leggings')">Performance Leggings</div>
+      <div class="product-card" onclick="showProduct('bras')">Sports Bras</div>
+      <div class="product-card" onclick="showProduct('shorts')">Running &amp; Training Shorts</div>
+      <div class="product-card" onclick="showProduct('tshirts')">Active T-Shirts &amp; Tank Tops</div>
+      <div class="product-card" onclick="showProduct('athleisure')">Athleisure Wear</div>
+    </div>
+
+    <!-- RIGHT: Product Display -->
+    <div class="product-display" id="productDisplay">
+      <h3>Men’s &amp; Women’s Sportswear</h3>
+      <p>
+        Versatile, performance-ready essentials designed for training, running, and everyday movement — built with breathable fabrics that move effortlessly with the body.
+      </p>
+      <img src="https://image2url.com/images/1763580213802-0089556f-e935-46ef-ae42-7faf7581e69e.png" alt="Men’s & Women’s Sportswear">
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="section grey fadeUp">
+  <h2 class="section-title">Why Choose Us</h2>
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>Premium Breathable Fabrics</h3>
+      <p>Crafted with advanced airflow technology to keep you cool, dry, and comfortable during workouts or everyday use.</p>
+    </div>
+
+    <div class="card">
+      <h3>Sweat-Wicking & Quick-Dry Technology</h3>
+      <p>Innovative moisture-control materials designed to pull sweat away from the skin for improved performance.</p>
+    </div>
+
+    <div class="card">
+      <h3>High-Stretch, Durable Materials</h3>
+      <p>Four-way stretch fabrics built to move with you and maintain shape, even through daily training.</p>
+    </div>
+
+    <div class="card">
+      <h3>Built for Training, Comfort & Lifestyle</h3>
+      <p>Versatile designs that transition effortlessly from the gym to everyday routines, providing all-day ease.</p>
+    </div>
+
+    <div class="card">
+      <h3>Precision Fit & Ergonomic Design</h3>
+      <p>Each piece is carefully tailored to support natural movement while ensuring a secure and comfortable fit.</p>
+    </div>
+<div class="card">
+      <h3>Performance-Tested Durability</h3>
+      <p>All products undergo strict quality checks to ensure long-lasting performance and reliability.</p>
+    </div>
+
+    <div class="card">
+      <h3>Strong & Experienced Leadership</h3>
+      <p>A dedicated team with expertise in fitness, fashion, product innovation, and global brand scaling.</p>
+    </div>
+
+    <div class="card">
+      <h3>Presence Across GCC & Europe</h3>
+      <p>A rapidly growing brand with increasing reach across key international markets.</p>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- SERVICES WE OFFER (NEW STYLE SECTION) -->
+<section id="services" class="fadeUp" 
+style="padding:90px 20px; background:#ffffff;">
+
+  <!-- Inline responsive CSS -->
+  <style>
+    @media (max-width: 768px) {
+      #services .srv-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+  
+  <h2 style="
+    font-size:34px;
+    text-align:center;
+    font-weight:800;
+    margin-bottom:60px;
+    color:#222;">
+    Services We Offer
+  </h2>
+
+  <div class="srv-grid" style="
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+  ">
+
+    <!-- LEFT COLUMN -->
+    <div style="display:flex; flex-direction:column; gap:35px;">
+      
+      <div style="
+        padding-left:20px;
+        border-left:5px solid #f9c7b4;">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:8px;">
+          Design & Product Development
+        </h3>
+        <p style="color:#555; font-size:17px;">
+          Complete end-to-end design support including fabric selection, pattern making, 
+          sampling, and product engineering.
+        </p>
+      </div>
+
+      <div style="
+        padding-left:20px;
+        border-left:5px solid #d7c7f5;">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:8px;">
+          Sustainable Manufacturing Solutions
+        </h3>
+        <p style="color:#555; font-size:17px;">
+          Eco-friendly production using responsibly sourced materials 
+          and certified ethical manufacturing partners.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div style="display:flex; flex-direction:column; gap:35px;">
+
+      <div style="
+        padding-left:20px;
+        border-left:5px solid #c9f0dd;">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:8px;">
+          Direct-to-Consumer E-Commerce Sales
+        </h3>
+        <p style="color:#555; font-size:17px;">
+          Smooth online shopping experience with fast delivery, premium packaging, 
+          and high customer satisfaction.
+        </p>
+      </div>
+
+      <div style="
+        padding-left:20px;
+        border-left:5px solid #f9c7b4;">
+        <h3 style="font-size:22px; font-weight:800; margin-bottom:8px;">
+          Digital Marketing & Brand Development
+        </h3>
+        <p style="color:#555; font-size:17px;">
+          Strategic brand-building solutions including influencer partnerships, 
+          social media campaigns, and content-led growth.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- HOW WE WORK -->
+<section class="bg-section fadeUp">
+<h2>How We Work</h2>
+<p>Each piece of apparel is crafted with meticulous attention—from concept and fabric selection to production and final quality checks. Our process prioritizes material excellence, responsible manufacturing, and a customer-first experience at every step.
+</p>
+</section>
+<!-- COMMUNITY -->
+<section class="community-new fadeUp">
+<div class="community-new-inner">
+<h2 class="community-new-title">Community & Digital Presence</h2>
+<p class="community-new-text">
+Phoenix Rise is more than an activewear brand, it is a movement built on discipline, performance, and lifestyle. Our digital engagement spans the GCC, Asia, and Europe, attracting fitness creators, athletes, and everyday movers who resonate with our vision.
+</p>
+<div class="community-stats">
+<div class="community-stat-box">
+<h3>100+</h3>
+<p>Engaged Online Community</p>
+</div>
+<div class="community-stat-box">
+<h3>35+</h3>
+<p>Creator Collaborations</p>
+</div>
+<div class="community-stat-box">
+<h3>3 Regions</h3>
+<p>GCC · Asia · Europe</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section id="contact" class="contact-sec-v2 fadeUp">
+<div class="contact-v2-inner">
+<h2 class="contact-v2-title">Contact Us</h2>
+<p class="contact-v2-sub">
+Have questions, collaboration ideas, or need product info? We're here to help.
+</p>
+<div class="contact-v2-card">
+<form class="contact-v2-form" onsubmit="return sendMail();">
+<input type="text" id="name" class="contact-v2-input" placeholder="Full Name" required>
+<input type="email" id="email" class="contact-v2-input" placeholder="Email Address" required>
+<textarea id="msg" class="contact-v2-textarea" rows="4" placeholder="Message"></textarea>
+<button class="contact-v2-btn">Send Message</button>
+</form>
+</div>
+<div class="contact-v2-details">
+<p><strong>PHOENIX RISE FZ-LLC</strong></p>
+<p>Compass Building, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE</p>
+<p>📞 +971 56 8801503 · ✉️ phoenixriseco99@gmail.com</p>
+</div>
+</div>
+</section>
+<footer>
+© <span id="year"></span> Phoenix Rise Activewear — All Rights Reserved.
+</footer>
+<script>
+// Mobile menu
+document.getElementById("menuToggle").onclick = () => {
+document.getElementById("menu").classList.toggle("open");
+};
+// Auto year
+document.getElementById("year").textContent = new Date().getFullYear();
+// IntersectionObserver
+const obs = new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){ e.target.classList.add("show"); }
+})
+},{threshold:0.2});
+document.querySelectorAll(".fadeUp").forEach(el=>obs.observe(el));
+/* PRODUCT INFORMATION */
+const products = {
+  sportswear: {
+    title: "Men’s & Women’s Sportswear",
+    desc: `Versatile, performance-ready essentials designed for training, running, and everyday movement — built with breathable fabrics that move effortlessly with the body.`,
+    img: "https://image2url.com/images/1763580213802-0089556f-e935-46ef-ae42-7faf7581e69e.png"
+  },
+  leggings: {
+    title: "Performance Leggings",
+    desc: `High-compression, squat-proof leggings engineered with four-way stretch and moisture-wicking technology for unmatched comfort and support during any workout.`,
+    img: "https://image2url.com/images/1763651018405-4276ae42-1e07-493b-adae-0c481d6ba9fa.png"
+  },
+  bras: {
+    title: "Sports Bras",
+    desc: `Supportive and breathable bras designed for all activity levels, featuring seamless construction, moisture control, and all-day comfort.`,
+    img: "https://image2url.com/images/1763651255440-891dde80-5fc8-4ec8-868e-bc7ff0ddf571.png"
+  },
+  shorts: {
+    title: "Running & Training Shorts",
+    desc: `Lightweight, quick-dry shorts built for speed, endurance, and unrestricted movement — ideal for both sport and casual wear.`,
+    img: "https://image2url.com/images/1763650999563-a99a642b-7eb7-4da6-aa4b-45f1b5fd2b9d.png"
+  },
+  tshirts: {
+    title: "Active T-Shirts & Tank Tops",
+    desc: `Soft, breathable tops crafted using cooling performance fabrics that keep you dry, fresh, and comfortable throughout the day.`,
+    img: "https://image2url.com/images/1763579192725-26c0eef2-4051-4ac6-b89e-c105a35890a8.png"
+  },
+  athleisure: {
+    title: "Athleisure Wear",
+    desc: `Minimal, stylish essentials made with soft-touch lifestyle fabrics — perfect for travel, casual movement, or relaxed daily wear.`,
+    img: "https://image2url.com/images/1763579123485-a73ade94-bf07-4c27-9837-97fa06ca92ca.png"
+  }
+};
+
+// PRODUCT DISPLAY FUNCTION
+function showProduct(key){
+const p = products[key];
+const box = document.getElementById("productDisplay");
+box.innerHTML = `
+<h3>${p.title}</h3>
+<p>${p.desc}</p>
+<img src="${p.img}" alt="${p.title}">
+`;
+}
+// Form
+function sendMail(){
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const msg=document.getElementById("msg").value.trim();
+if(!name || !email){
+alert("Please fill all required fields.");return false;
+}
+const mailto = `mailto:phoenixriseco99@gmail.com?subject=Website Inquiry from ${name}&body=${encodeURIComponent(msg + "\n\nFrom: " + name + " (" + email + ")")}`;
+window.location.href = mailto;
+return false;
+}
+</script>
+</body>
+</html>
